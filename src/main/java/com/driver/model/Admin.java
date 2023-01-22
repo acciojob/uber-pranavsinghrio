@@ -1,24 +1,33 @@
 package com.driver.model;
 
-import org.springframework.boot.test.autoconfigure.data.cassandra.DataCassandraTest;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "admin")
 public class Admin {
-     @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int adminId;
-     private String username;
-     private String passwowd;
 
-    public int getId() {
+    private String username;
+
+    private String password;
+
+    public Admin(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Admin() {
+    }
+
+    public int getAdminId() {
         return adminId;
     }
 
-    public void setId(int id) {
-        this.adminId = id;
+    public void setAdminId(int adminId) {
+        this.adminId = adminId;
     }
 
     public String getUsername() {
@@ -29,19 +38,11 @@ public class Admin {
         this.username = username;
     }
 
-    public String getPasswowd() {
-        return passwowd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswowd(String passwowd) {
-        this.passwowd = passwowd;
-    }
-
-    public Admin() {
-    }
-
-    public Admin(String username, String passwowd) {
-        this.username = username;
-        this.passwowd = passwowd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

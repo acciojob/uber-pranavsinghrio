@@ -5,24 +5,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customers")
 public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String mobile;
-    private  String password;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int customerId;
+
+    private String mobile;
+
+    private String password;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<TripBooking> tripBookings = new ArrayList<>();
 
-    public int getId() {
-        return id;
+    public Customer(String mobile, String password) {
+        this.mobile = mobile;
+        this.password = password;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Customer() {
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public String getMobile() {
@@ -47,13 +57,5 @@ public class Customer {
 
     public void setTripBookings(List<TripBooking> tripBookings) {
         this.tripBookings = tripBookings;
-    }
-
-    public Customer() {
-    }
-
-    public Customer(String mobile, String password) {
-        this.mobile = mobile;
-        this.password = password;
     }
 }

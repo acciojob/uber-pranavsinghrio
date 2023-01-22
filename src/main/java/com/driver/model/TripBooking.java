@@ -5,8 +5,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tripBooking")
 public class TripBooking {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int tripBookingId;
 
     private String fromLocation;
@@ -27,6 +28,26 @@ public class TripBooking {
 
     @Enumerated(value = EnumType.STRING)
     private TripStatus tripStatus;
+
+    public TripStatus getStatus() {
+        return tripStatus;
+    }
+
+    public void setStatus(TripStatus tripStatus) {
+        this.tripStatus = tripStatus;
+    }
+
+    public TripBooking() {
+    }
+
+    public TripBooking(String fromLocation, String toLocation, int distanceInKm, int bill) {
+
+        this.fromLocation = fromLocation;
+        this.toLocation = toLocation;
+        this.distanceInKm = distanceInKm;
+        this.bill = bill;
+
+    }
 
     public int getTripBookingId() {
         return tripBookingId;
@@ -82,23 +103,5 @@ public class TripBooking {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public TripStatus getTripStatus() {
-        return tripStatus;
-    }
-
-    public void setTripStatus(TripStatus tripStatus) {
-        this.tripStatus = tripStatus;
-    }
-
-    public TripBooking() {
-    }
-
-    public TripBooking(String fromLocation, String toLocation, int distanceInKm, int bill) {
-        this.fromLocation = fromLocation;
-        this.toLocation = toLocation;
-        this.distanceInKm = distanceInKm;
-        this.bill = bill;
     }
 }
